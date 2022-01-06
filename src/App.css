@@ -5,26 +5,35 @@
 }
 
 * {
-  background-color: var(--color1);
+  /* background: url(/public/background.svg) no-repeat; */
+  /* background-size: contain; */
+  /* font-family: "Garamond"; */
+  /* font-family: "Major Mono Display"; */
+  font-family: "Courier New";
+  margin: 0;
 }
 
 .App {
   text-align: center;
+  /* background: url(/public/background.svg) no-repeat; */
+  background: url(https://www.pngmagic.com/product_images/blue-3d-background-vector-images.jpg)
+    no-repeat;
+  background-size: cover;
+  /* background-color: var(--color1); */
 }
 
-.App-logo {
-  height: 40vmin;
+/* .App-logo {
+  height: 400px;
   pointer-events: none;
-}
+} */
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -48,21 +57,27 @@
 }
 
 div .episode_card {
-  background-color: var(--color2);
-  width: 350px;
-  color: var(--color3);
+  background-color: var(--color3);
+  width: 25vw;
+  color: var(--color1);
   border: 2px solid;
-  margin: 0 auto;
+  padding: 1vw;
+  margin: 4vw;
 }
 
 .episode_upvotes {
   text-align: left;
-  height: 25px;
+  height: 25vh;
 }
 
 .episode_image {
   text-align: right;
-  height: 20px;
+  height: 20vw;
+}
+
+.episode_playback {
+  text-align: left;
+  height: 10vh;
 }
 
 .slider {
@@ -76,7 +91,9 @@ div .episode_card {
 
 .header {
   /* height: 300px; */
-  padding: 3%;
+  /* background-color: var(--color1); */
+  padding: 1%;
+  /* margin-top: 5vh; */
   /* background-image: url(./logo512); */
   color: var(--color3);
 }
