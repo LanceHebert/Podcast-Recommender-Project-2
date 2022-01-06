@@ -19,14 +19,17 @@ function EpisodeCard({ episode }) {
         {Math.round(episode.duration_ms / 1000 / 60)} min{" "}
       </span>
       <span className="episode_playback">
-        <iframe
-          src={`https://open.spotify.com/embed/episode/${episode.id}?utm_source=generator&theme=0`}
+        <video controls width="200">
+          <source src={episode.audio_preview_url} type="audio/mp3"></source>
+        </video>
+        {/* <iframe
+          src={`https://open.spotify.com/embed/episode/${episode.external_urls.spotify}?utm_source=generator&theme=0`}
           width="250"
           height="152"
           frameBorder="0"
           allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        ></iframe>
+        ></iframe> */}
       </span>
       <span>
         <img alt="upvotes" src="../upvote.png" className="episode_upvotes" />
