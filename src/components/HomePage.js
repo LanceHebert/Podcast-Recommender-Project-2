@@ -1,9 +1,8 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Search from "./Search";
 import CarouselContainer from "./CarouselContainer";
 
-function HomePage({ setReturnedShows,authToken }) {
-  
+function HomePage({ setReturnedShows, authToken }) {
   const [search, setSearch] = useState("");
   //setting formSubmit to value that was entered in search form.
 
@@ -33,7 +32,7 @@ function HomePage({ setReturnedShows,authToken }) {
         search={search}
         setSearch={setSearch}
       />
-      <CarouselContainer />
+      <CarouselContainer className="carousel" />
     </div>
   );
 }

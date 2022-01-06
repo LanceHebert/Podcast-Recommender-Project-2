@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faHeartBroken } from "@fortawesome/free-solid-svg-icons";
+
 // import AAA from "";
 
 function EpisodeCard({ episode }) {
+  const [toggleHeart, setToggleHeart] = useState(false);
+
+  function doSomething(e) {
+    console.log("Toggling to", !toggleHeart, "Captain");
+    setToggleHeart(!toggleHeart);
+  }
+
   return (
     <div className="episode_card" key={null}>
       <span>
@@ -14,16 +24,18 @@ function EpisodeCard({ episode }) {
       <span> </span>
       <span className="episode_title"> {episode.name} </span>
       <span> </span>
+
       <span className="episode_duration">
         {" "}
         {Math.round(episode.duration_ms / 1000 / 60)} min{" "}
       </span>
+
       <span className="episode_playback">
         <video controls width="200">
           <source src={episode.audio_preview_url} type="audio/mp3"></source>
         </video>
         {/* <iframe
-          src={`https://open.spotify.com/embed/episode/${episode.external_urls.spotify}?utm_source=generator&theme=0`}
+          src={`https://open.spotify.com/embed/episode/${episode.id}?utm_source=generator&theme=0`}
           width="250"
           height="152"
           frameBorder="0"
@@ -32,8 +44,15 @@ function EpisodeCard({ episode }) {
         ></iframe> */}
       </span>
       <span>
-        <img alt="upvotes" src="../upvote.png" className="episode_upvotes" />
-        {null}
+        {/* <img alt="Favorited" src="../upvote.png" className="episode_upvotes" />
+        {null} */}
+
+        {toggleHeart ? (
+          <FontAwesomeIcon icon={faHeart} onClick={doSomething} />
+        ) : (
+          <FontAwesomeIcon icon={faHeartBroken} onClick={doSomething} />
+        )}
+        {/* <FontAwesomeIcon icon={faHeartCrack} />{" "} */}
       </span>
     </div>
   );
@@ -41,8 +60,8 @@ function EpisodeCard({ episode }) {
 
 export default EpisodeCard;
 
-{
-  /* <div className="episode_card" key={episode.id}>
+// {
+/* <div className="episode_card" key={episode.id}>
       
       <span>
         <img
@@ -60,4 +79,4 @@ export default EpisodeCard;
         {episode.votes}
       </span>
     </div> */
-}
+// }

@@ -48,9 +48,9 @@
 }
 
 div .episode_card {
-  background-color: forestgreen;
+  background-color: var(--color2);
   width: 350px;
-  color: white;
+  color: var(--color3);
   border: 2px solid;
   margin: 0 auto;
 }
@@ -72,4 +72,23 @@ div .episode_card {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.header {
+  /* height: 300px; */
+  padding: 3%;
+  /* background-image: url(./logo512); */
+  color: var(--color3);
+}
+
+.searchbar {
+  padding: 2%;
+}
+
+.carousel {
+  padding: 2%;
+}
+
+.carousel2 {
+  padding: 2%;
 }
