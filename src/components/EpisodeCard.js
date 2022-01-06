@@ -18,6 +18,11 @@ function EpisodeCard({ episode }) {
         {" "}
         {Math.round(episode.duration_ms / 1000 / 60)} min{" "}
       </span>
+      <span className="episode_playback">
+        <video controls width="200">
+          <source src={episode.audio_preview_url} type="audio/mp3"></source>
+        </video>
+      </span>
       <span>
         <img alt="upvotes" src="../upvote.png" className="episode_upvotes" />
         {null}
