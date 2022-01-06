@@ -1,3 +1,13 @@
+:root {
+  --color1: #1a374d;
+  --color2: #6998ab;
+  --color3: #b1d0e0;
+}
+
+* {
+  background-color: var(--color1);
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +45,31 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+div .episode_card {
+  background-color: forestgreen;
+  width: 350px;
+  color: white;
+  border: 2px solid;
+  margin: 0 auto;
+}
+
+.episode_upvotes {
+  text-align: left;
+  height: 25px;
+}
+
+.episode_image {
+  text-align: right;
+  height: 20px;
+}
+
+.slider {
+  position: relative;
+  height: 100vh;
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -2,7 +2,7 @@ import "../App.css";
 import React, { useState,useEffect } from "react";
 import HomePage from "./HomePage";
 import Header from "./Header";
-import { Routes, Route, Navigate, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import SearchList from "./SearchList";
 import EpisodeChosen from "./EpisodeChosen";
 import { Buffer } from "buffer";
