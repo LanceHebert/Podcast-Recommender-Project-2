@@ -1,33 +1,19 @@
 {
   "podcasts": [
     {
-      "The Joe Rogan Experience": [
-        "6wKuzs0IJDUEHk4t2MiLAT",
-        "1arWOZhchZf836cgMqgsZZ",
-        "3SCsueX2bZdbEzRtKOCEyT"
+      "Lex Fridman Podcast": [
+        "0W7obuJMLawwf6CTddtRwh",
+        "1E3ESPFzTHiAxJVXQPiRGd",
+        "4eKew2twwjd1jJiAnqaPVw"
       ],
       "id": 1
     },
     {
-      "Lex Fridman Podcast": [
-        "0W7obuJMLawwf6CTddtRwh",
-        "1E3ESPFzTHiAxJVXQPiRGd"
+      "The Joe Rogan Experience": [
+        "6wKuzs0IJDUEHk4t2MiLAT",
+        "1arWOZhchZf836cgMqgsZZ"
       ],
       "id": 2
-    },
-    {
-      "The Lance Wallnau Show": [
-        "7uGbfWPNlqH48xEaLEke2z",
-        "6wZJMx7ZNNzU8OXQQKieQq"
-      ],
-      "id": 3
-    },
-    {
-      "Spittin Chiclets     ": [
-        "693l2F3j7svRP6NwA1PDXh",
-        "5Np1pJBTnjMIiN81Z4YoAT"
-      ],
-      "id": 4
     }
   ]
 }

@@ -107,15 +107,19 @@ div .episode_card {
 .header {
   /* height: 300px; */
   /* background-color: var(--color1); */
-  padding: 1%;
-  padding-top: 2%;
+  /* padding: 1%; */
+  /* padding-top: 2%; */
   /* margin-top: 5vh; */
   /* background-image: url(./logo512); */
   color: var(--color3);
+  /* margin-bottom: 2vh; */
+  /* position: absolute; */
+  font-size: 75%;
 }
 
 .searchbar {
-  padding: 1%;
+  padding-top: 6vh;
+  padding-bottom: 1vh;
 }
 
 .carousel {
@@ -198,4 +202,34 @@ div .episode_card {
 
 /* #home {
   overflow: hidden;
+} */
+
+#navHome {
+  /* position: absolute; */
+  /* float: right; */
+  /* align-items: right; */
+  text-align: center;
+  background-color: transparent;
+}
+
+#roeJogan {
+  width: 4vw;
+  height: 4vw;
+  align-items: left;
+}
+
+#bar2 {
+  justify-content: left;
+  /* align-items: center; */
+
+  background-color: transparent;
+  font-size: 175%;
+}
+
+#nav3 {
+  justify-content: right;
+}
+
+/* #filler {
+  margin-right: 29vw;
 } */

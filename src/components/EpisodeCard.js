@@ -35,7 +35,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
   //make use effect to run compare api function
   useEffect(() => {
     compareDBToAPI();
-  });
+  }, []);
 
   function compareDBToAPI() {
     const whatFoundPodcast = dbJSON.find((id) => {
