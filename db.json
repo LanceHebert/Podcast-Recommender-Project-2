@@ -1,0 +1,22 @@
+{
+  "podcasts": [
+    {
+      "The Joe Rogan Experience": [
+        "1arWOZhchZf836cgMqgsZZ"
+      ],
+      "id": 1
+    },
+    {
+      "Lex Fridman Podcast": [],
+      "id": 2
+    },
+    {
+      "Spittin Chiclets     ": [
+        "693l2F3j7svRP6NwA1PDXh",
+        "5Np1pJBTnjMIiN81Z4YoAT",
+        "3qs1D2koJlPxREm1nWmT4X"
+      ],
+      "id": 3
+    }
+  ]
+}
