@@ -8,9 +8,53 @@ import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
 //isTrue = false on every card.
 //iterate through every level of DBJSON and we compare that to the episode.key, if it matches, we want to trigger isTrue or maybe trigger the state to change to true at that at
 
-function EpisodeCard({ episode, podcastObj, isTrue }) {
+function EpisodeCard({ episode, podcastObj, dbJSON }) {
   const [toggleHeart, setToggleHeart] = useState(false);
   const [fullDataArray, setFullDataArray] = useState([]);
+
+  //Option for getting DB 50 times
+  //   useEffect(() => {
+  //     getDBJSONNoCheck();
+  //   }, []);
+
+  //   function getDBJSONNoCheck() {
+  //     const myRequest = {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     };
+  //     fetch("http://localhost:3005/podcasts", myRequest)
+  //       .then((response) => response.json())
+  //       .then((newJSON) => {
+  //         return console.log("Initial getDBJSON info before click", newJSON);
+  //         // compareFunction()
+  //       });
+  //   }
+
+  //make use effect to run compare api function
+  useEffect(() => {
+    compareDBToAPI();
+  });
+
+  function compareDBToAPI() {
+    const whatFoundPodcast = dbJSON.find((id) => {
+      return Object.keys(id)[0] === podcastObj.name;
+    });
+    const whatFoundEpisode = dbJSON.find((id) => {
+      return Object.values(id)[0].find((id) => id === episode.id);
+    });
+
+    console.log("WhatFoundPodcast:", whatFoundPodcast);
+
+    if (whatFoundPodcast !== undefined && whatFoundPodcast !== false) {
+      console.log("This should not be added");
+
+      if (whatFoundEpisode !== undefined) {
+        setToggleHeart(true);
+      }
+    }
+  }
 
   function getDBJSON() {
     const myRequest = {
@@ -28,6 +72,7 @@ function EpisodeCard({ episode, podcastObj, isTrue }) {
   }
 
   function checkDBJSON(newJSON) {
+    //Variables
     const foundNewEpisode = newJSON.find(
       (id) => Object.keys(id)[0] === podcastObj.name
     );
@@ -42,6 +87,8 @@ function EpisodeCard({ episode, podcastObj, isTrue }) {
     const whatFoundEpisode = newJSON.find((id) => {
       return Object.values(id)[0].find((id) => id === episode.id);
     });
+
+    //functions
 
     console.log("This was found", whatFoundEpisode);
     if (whatFoundPodcast !== undefined && whatFoundPodcast !== false) {
@@ -156,14 +203,14 @@ function EpisodeCard({ episode, podcastObj, isTrue }) {
         {/* <video controls width="200" className="episode_playback">
           <source src={episode.audio_preview_url} type="audio/mp3"></source>
         </video> */}
-        {/* <iframe
+        <iframe
           src={`https://open.spotify.com/embed/episode/${episode.id}?utm_source=generator&theme=0`}
           width="350"
           height="152"
           frameBorder="0"
           allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        ></iframe> */}
+        ></iframe>
       </div>
       <span className="episode_upvotes">
         {toggleHeart ? (

@@ -2,20 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EpisodeCard from "./EpisodeCard";
 
+// we need to compare dbjson podcast name to podcastObj name, if true do a .includes on dbjson, if true, change some value to true to show heart in card
+
 function EpisodeChosen({ authToken }) {
   const [{ podcastObj, errors, status }, setPodcastObj] = useState({
     podcastObj: null,
     errors: null,
     status: "idle",
   });
+  const [dbJSON, setDBJSON] = useState([]);
 
   const params = useParams();
   const showid = params.showid;
 
   useEffect(() => {
     setPodcastObj((state) => ({ ...state, errors: null, status: "pending" }));
-    getEpisodeFetch();
+    getDBJSONNoCheck();
+    getPodcastFetch();
   }, []);
+
+  function getDBJSONNoCheck() {
+    const myRequest = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch("http://localhost:3005/podcasts", myRequest)
+      .then((response) => response.json())
+      .then((newJSON) => {
+        console.log("Initial getDBJSON info before click", newJSON);
+        setDBJSON(newJSON);
+      });
+  }
 
   function displayEpisodeTitle() {
     return (
@@ -35,14 +54,14 @@ function EpisodeChosen({ authToken }) {
         key={episode.id}
         episode={episode}
         podcastObj={podcastObj}
-        isTrue={false}
+        dbJSON={dbJSON}
       />
     ));
-    console.log(epiList);
+    // console.log(epiList);
     return epiList;
   }
 
-  function getEpisodeFetch() {
+  function getPodcastFetch() {
     fetch(`https://api.spotify.com/v1/shows/${showid}?market=US`, {
       method: "GET",
       headers: {
