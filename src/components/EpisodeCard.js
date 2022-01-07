@@ -5,14 +5,12 @@ import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
 
 // import AAA from "";
 
-function EpisodeCard({ episode, podcastObj }) {
+//isTrue = false on every card.
+//iterate through every level of DBJSON and we compare that to the episode.key, if it matches, we want to trigger isTrue or maybe trigger the state to change to true at that at
+
+function EpisodeCard({ episode, podcastObj, isTrue }) {
   const [toggleHeart, setToggleHeart] = useState(false);
   const [fullDataArray, setFullDataArray] = useState([]);
-  const [updateDBJSON, setUpdateDBJSON] = useState(false);
-
-  //   useEffect(() => {
-  //     getDBJSON();
-  //   }, []);
 
   function getDBJSON() {
     const myRequest = {
@@ -30,19 +28,79 @@ function EpisodeCard({ episode, podcastObj }) {
   }
 
   function checkDBJSON(newJSON) {
-    console.log("Drill here", newJSON);
-    const whatFound = newJSON.find((id) => {
-      console.log("This is the id", Object.keys(id)[0]);
+    const foundNewEpisode = newJSON.find(
+      (id) => Object.keys(id)[0] === podcastObj.name
+    );
+
+    const pleaseBeID = newJSON.find((key) => {
+      return Object.keys(key)[0] === podcastObj.name;
+    });
+    const whatFoundPodcast = newJSON.find((id) => {
       return Object.keys(id)[0] === podcastObj.name;
     });
-    console.log("This was found", whatFound);
-    if (whatFound !== undefined) {
+
+    const whatFoundEpisode = newJSON.find((id) => {
+      return Object.values(id)[0].find((id) => id === episode.id);
+    });
+
+    console.log("This was found", whatFoundEpisode);
+    if (whatFoundPodcast !== undefined && whatFoundPodcast !== false) {
       console.log("This should not be added");
 
-      // this will be the second check for episode
+      if (whatFoundEpisode !== undefined) {
+        console.log("Dont do anything");
+        setToggleHeart(false);
+
+        console.log("Log no filter", pleaseBeID[podcastObj.name]);
+
+        //this is checking to see correct podcast, then it is filtering the correct episodes to be subtracted
+        const subtractedArray = pleaseBeID[podcastObj.name].filter((epi) => {
+          return epi !== episode.id;
+        });
+        fetch(`http://localhost:3005/podcasts/${pleaseBeID.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            [podcastObj.name]: subtractedArray,
+          }),
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            console.log("THIS SHOULD NOW BE REMOVED--->>>", json);
+          });
+      } else {
+        console.log("Activate the Patch function");
+
+        // this will be the second check for episode
+
+        console.log(
+          "HERE BE FOUND NEW EPISODE",
+          foundNewEpisode[podcastObj.name]
+        );
+
+        fetch(`http://localhost:3005/podcasts/${pleaseBeID.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+          body: JSON.stringify({
+            [podcastObj.name]: [
+              ...foundNewEpisode[podcastObj.name],
+              episode.id,
+            ],
+          }),
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            console.log("THIS SHOULD NOW BE PATCHED--->>>", json);
+            setToggleHeart(true);
+          });
+      }
     } else {
       console.log("This SHOULD be added.");
-
+      dbAdd();
       //this will be the post
     }
   }
@@ -59,7 +117,7 @@ function EpisodeCard({ episode, podcastObj }) {
     const packagedObj = {
       [podcastID]: [...fullDataArray, episode.id],
     };
-    fetch("http://localhost:3005/podcasts", {
+    fetch("http://localhost:3005/podcasts/", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -90,26 +148,26 @@ function EpisodeCard({ episode, podcastObj }) {
         />
       </span>
       <span className="episode_title"> {episode.name} </span>
-      <span className="episode_duration">
+      <div className="episode_duration">
         {" "}
         {Math.round(episode.duration_ms / 1000 / 60)} min{" "}
-      </span>
-      <span className="episode_playback">
-        <video controls width="200">
+      </div>
+      <div>
+        {/* <video controls width="200" className="episode_playback">
           <source src={episode.audio_preview_url} type="audio/mp3"></source>
-        </video>
+        </video> */}
         {/* <iframe
           src={`https://open.spotify.com/embed/episode/${episode.id}?utm_source=generator&theme=0`}
-          width="250"
+          width="350"
           height="152"
           frameBorder="0"
           allowfullscreen=""
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         ></iframe> */}
-      </span>
+      </div>
       <span className="episode_upvotes">
         {toggleHeart ? (
-          <FontAwesomeIcon icon={faHeart} onClick={dbSubtract} />
+          <FontAwesomeIcon icon={faHeart} onClick={getDBJSON} />
         ) : (
           <FontAwesomeIcon icon={faHeartEmpty} onClick={getDBJSON} />
         )}
@@ -119,24 +177,3 @@ function EpisodeCard({ episode, podcastObj }) {
 }
 
 export default EpisodeCard;
-
-// {
-/* <div className="episode_card" key={episode.id}>
-      
-      <span>
-        <img
-          alt="no image :("
-          src={episode.picture}
-          className="episode_image"
-        />
-      </span>
-      <span> </span>
-      <span className="episode_title"> {episode.name} </span>
-      <span> </span>
-      <span className="episode_duration"> {episode.duration} min </span>
-      <span>
-        <img alt="upvotes" src="../upvote.png" className="episode_upvotes" />
-        {episode.votes}
-      </span>
-    </div> */
-// }

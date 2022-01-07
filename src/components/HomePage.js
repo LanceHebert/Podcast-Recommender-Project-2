@@ -26,7 +26,7 @@ function HomePage({ setReturnedShows, authToken }) {
   }
 
   return (
-    <div>
+    <div id="home">
       <Search
         handleFormSubmit={handleFormSubmit}
         search={search}
