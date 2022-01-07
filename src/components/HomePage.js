@@ -7,22 +7,24 @@ function HomePage({ setReturnedShows, authToken }) {
   //setting formSubmit to value that was entered in search form.
 
   function handleFormSubmit() {
-    const encodedFormSubmit = encodeURI(search);
+    if (search !== "") {
+      const encodedFormSubmit = encodeURI(search);
 
-    fetch(
-      `https://api.spotify.com/v1/search?q=${encodedFormSubmit}&type=show&market=US`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((showsBack) => {
-        console.log("**********", showsBack.shows.items);
-        setReturnedShows(showsBack.shows.items);
-      });
+      fetch(
+        `https://api.spotify.com/v1/search?q=${encodedFormSubmit}&type=show&market=US`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((showsBack) => {
+          console.log("**********", showsBack.shows.items);
+          setReturnedShows(showsBack.shows.items);
+        });
+    }
   }
 
   return (

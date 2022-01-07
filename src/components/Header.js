@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -27,19 +28,26 @@ function Header() {
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                Favorites
+                Trending
               </Nav.Link>
-              <NavDropdown title="Trending" id="basic-nav-dropdown">
+              <NavDropdown title="Our Favorite's " id="basic-nav-dropdown">
                 {/* <NavDropdown.Item href="#action/3.1">Trending</NavDropdown.Item> */}
-                <NavDropdown.Item href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                  US
+                <NavDropdown.Item>
+                  <NavLink to={`/searchlist/${"5lz7T66ncrF7sfRCls5zvO"}`}>
+                    Nick's Favorite
+                  </NavLink>
                 </NavDropdown.Item>
-                <NavDropdown.Item href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                  Worldwide
+                <NavDropdown.Divider />
+                <NavDropdown.Item>
+                  <NavLink to={`/searchlist/${"4XPl3uEEL9hvqMkoZrzbx5"}`}>
+                    Lance's Favorite
+                  </NavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-                  Multiverse
+                  <NavLink to={`/searchlist/${"4aPg5umkfE1LA9Xn8rsbBW"}`}>
+                    Andrew's Favorite
+                  </NavLink>
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 function Search({ handleFormSubmit, setSearch, search }) {
   return (
     <div className="searchbar">
-      <input
+      <input id="length"
         value={search}
         type="text"
         id="search"
@@ -12,8 +13,18 @@ function Search({ handleFormSubmit, setSearch, search }) {
         placeholder="Type Podcast Name..."
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Link to="/searchlist">
-        <button onClick={handleFormSubmit}>Search</button>
+      <Link to={search !== "" ? "/searchlist" : "/"}>
+        <Button
+          style={{
+            color: "black",
+            // boxShadow: "5px 5px 3px white",
+            borderColor: "#b1d0e0",
+            backgroundColor: "#b1d0e0",
+          }}
+          onClick={handleFormSubmit}
+        >
+          Search
+        </Button>
       </Link>
     </div>
   );
