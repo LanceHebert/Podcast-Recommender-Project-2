@@ -60,7 +60,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
         "Content-Type": "application/json",
       },
     };
-    fetch("http://localhost:3000/podcasts", myRequest)
+    fetch("https://podcast-recommend.herokuapp.com/podcasts", myRequest)
       .then((response) => response.json())
       .then((newJSON) => {
         // console.log("This is the returned", newJSON);
@@ -101,7 +101,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
         const subtractedArray = pleaseBeID[podcastObj.name].filter((epi) => {
           return epi !== episode.id;
         });
-        fetch(`http://localhost:3000/podcasts/${pleaseBeID.id}`, {
+        fetch(`https://podcast-recommend.herokuapp.com/podcasts/${pleaseBeID.id}`, {
           method: "PUT",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -124,7 +124,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
           foundNewEpisode[podcastObj.name]
         );
 
-        fetch(`http://localhost:3000/podcasts/${pleaseBeID.id}`, {
+        fetch(`https://podcast-recommend.herokuapp.com/podcasts/${pleaseBeID.id}`, {
           method: "PATCH",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -161,7 +161,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
     const packagedObj = {
       [podcastID]: [...fullDataArray, episode.id],
     };
-    fetch("http://localhost:3000/podcasts/", {
+    fetch("https://podcast-recommend.herokuapp.com/podcasts/", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
