@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EpisodeCard from "./EpisodeCard";
 
-// we need to compare dbjson podcast name to podcastObj name, if true do a .includes on dbjson, if true, change some value to true to show heart in card
+
 
 function EpisodeChosen({ authToken }) {
   const [{ podcastObj, errors, status }, setPodcastObj] = useState({
@@ -28,7 +28,7 @@ function EpisodeChosen({ authToken }) {
         "Content-Type": "application/json",
       },
     };
-    fetch("http://localhost:3005/podcasts", myRequest)
+    fetch("http://localhost:3000/podcasts", myRequest)
       .then((response) => response.json())
       .then((newJSON) => {
         console.log("Initial getDBJSON info before click", newJSON);
@@ -46,7 +46,7 @@ function EpisodeChosen({ authToken }) {
   }
 
   function showCards() {
-    // console.log("^^^^^^^", podcastObj);
+ 
 
     //ternary dbJSON.episode === episode.key from map , use epilist with isTrue=true. if its not
     const epiList = podcastObj.episodes.items.map((episode) => (
@@ -57,7 +57,7 @@ function EpisodeChosen({ authToken }) {
         dbJSON={dbJSON}
       />
     ));
-    // console.log(epiList);
+   
     return epiList;
   }
 

@@ -6,11 +6,14 @@ import { Routes, Route } from "react-router-dom";
 import SearchList from "./SearchList";
 import EpisodeChosen from "./EpisodeChosen";
 import { Buffer } from "buffer";
+
 // import styled from "styled-components";
+const dotenv = require('dotenv').config()
 
 function App() {
   const [returnedShows, setReturnedShows] = useState([]);
   const [authToken, setAuthToken] = useState("");
+  const api_key = process.env.REACT_APP_API_KEY
 
   useEffect(() => {
     console.log("Loading....");
@@ -18,15 +21,15 @@ function App() {
   }, []);
 
   function getSpotAuth() {
-    var client_id = "6f9666b315ce4b59a68c96974576e616";
-    var client_secret = "75d1ac22e0f1438db1c1026b76aa4e4d";
+    var client_id = "f85a953e44db4e769a3cf3dcdc9242d6";
+   
 
     fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
         Authorization:
           "Basic " +
-          Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          Buffer.from(client_id + ":" + api_key).toString("base64"),
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: "grant_type=client_credentials",
@@ -34,7 +37,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.access_token);
+        
         setAuthToken(data.access_token);
       });
   }

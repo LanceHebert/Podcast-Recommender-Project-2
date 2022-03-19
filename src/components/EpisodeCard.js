@@ -3,10 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
 
-// import AAA from "";
 
-//isTrue = false on every card.
-//iterate through every level of DBJSON and we compare that to the episode.key, if it matches, we want to trigger isTrue or maybe trigger the state to change to true at that at
 
 function EpisodeCard({ episode, podcastObj, dbJSON }) {
   const [toggleHeart, setToggleHeart] = useState(false);
@@ -63,7 +60,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
         "Content-Type": "application/json",
       },
     };
-    fetch("http://localhost:3005/podcasts", myRequest)
+    fetch("http://localhost:3000/podcasts", myRequest)
       .then((response) => response.json())
       .then((newJSON) => {
         // console.log("This is the returned", newJSON);
@@ -104,7 +101,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
         const subtractedArray = pleaseBeID[podcastObj.name].filter((epi) => {
           return epi !== episode.id;
         });
-        fetch(`http://localhost:3005/podcasts/${pleaseBeID.id}`, {
+        fetch(`http://localhost:3000/podcasts/${pleaseBeID.id}`, {
           method: "PUT",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -127,7 +124,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
           foundNewEpisode[podcastObj.name]
         );
 
-        fetch(`http://localhost:3005/podcasts/${pleaseBeID.id}`, {
+        fetch(`http://localhost:3000/podcasts/${pleaseBeID.id}`, {
           method: "PATCH",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -154,7 +151,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
 
   function dbAdd(e) {
     const podcastID = podcastObj.name;
-    // console.log("This is what we have", episode.id, podcastID);
+   
 
     setToggleHeart(true);
 
@@ -164,7 +161,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
     const packagedObj = {
       [podcastID]: [...fullDataArray, episode.id],
     };
-    fetch("http://localhost:3005/podcasts/", {
+    fetch("http://localhost:3000/podcasts/", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -174,7 +171,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        // setUpdateDBJSON(!updateDBJSON);
+        
       })
       .catch((error) => {
         console.error("Error:", error);

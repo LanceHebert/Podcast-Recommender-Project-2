@@ -17,7 +17,7 @@ function Search({ handleFormSubmit, setSearch, search }) {
         <Button
           style={{
             color: "black",
-            // boxShadow: "5px 5px 3px white",
+           
             borderColor: "#b1d0e0",
             backgroundColor: "#b1d0e0",
           }}

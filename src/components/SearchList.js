@@ -11,7 +11,7 @@ function SearchList({ returnedShows }) {
           alt={show.name + "podcast"}
         />
       </Link>
-      {/* <p></p> */}
+   
     </li>
   ));
 
