@@ -28,7 +28,7 @@ function EpisodeChosen({ authToken }) {
         "Content-Type": "application/json",
       },
     };
-    fetch("https://podcast-recommend.herokuapp.com//podcasts", myRequest)
+    fetch("http://localhost:3000/podcasts", myRequest)
       .then((response) => response.json())
       .then((newJSON) => {
         console.log("Initial getDBJSON info before click", newJSON);

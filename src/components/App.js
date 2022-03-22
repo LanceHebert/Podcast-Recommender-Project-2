@@ -7,7 +7,7 @@ import SearchList from "./SearchList";
 import EpisodeChosen from "./EpisodeChosen";
 import { Buffer } from "buffer";
 
-// import styled from "styled-components";
+//ENV file for hiding API key
 const dotenv = require('dotenv').config()
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
   function getSpotAuth() {
     var client_id = "f85a953e44db4e769a3cf3dcdc9242d6";
    
-
+//bearer token fetch for access to spotify API
     fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
       headers: {
