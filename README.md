@@ -20,7 +20,7 @@ This project is a podcast search and like app using the Spotify API. The app use
 ![](likes.gif)
 ***
 ability to like and play any podcast episode shown
-***
+
 
 ***
 ![](persistedLikes.gif)
@@ -28,7 +28,7 @@ ability to like and play any podcast episode shown
 - Persistent "likes" for each episode that allow user to remember which episodes were enjoyed
 ***
 
-***
+
 
 
 
