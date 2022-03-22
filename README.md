@@ -2,7 +2,7 @@
 
 ## Description
 
-- Made in 1 week, Group Project - Contributors   [Nick Alayra](https://github.com/nalayra), [Andrew Wei](https://github.com/weiwei-out)
+- Made in 1 week, Group Project - Contributors   [Nick Alayra](https://github.com/nalayra), [Andrew Wei](https://github.com/weiwei-out), [Lance Hebert](https://github.com/LanceHebert/)
 
 This project is a podcast search and like app using the Spotify API. The app uses a temporary token to allow the user to search through podcasts and see a list of 50 episodes and to like them which is then persisted on a JSON backend. 
 
