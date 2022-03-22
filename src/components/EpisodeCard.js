@@ -3,33 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartEmpty } from "@fortawesome/free-regular-svg-icons";
 
-
-
 function EpisodeCard({ episode, podcastObj, dbJSON }) {
   const [toggleHeart, setToggleHeart] = useState(false);
   const [fullDataArray, setFullDataArray] = useState([]);
 
-  //Option for getting DB 50 times
-  //   useEffect(() => {
-  //     getDBJSONNoCheck();
-  //   }, []);
-
-  //   function getDBJSONNoCheck() {
-  //     const myRequest = {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     };
-  //     fetch("http://localhost:3005/podcasts", myRequest)
-  //       .then((response) => response.json())
-  //       .then((newJSON) => {
-  //         return console.log("Initial getDBJSON info before click", newJSON);
-  //         // compareFunction()
-  //       });
-  //   }
-
-  //make use effect to run compare api function
   useEffect(() => {
     compareDBToAPI();
   }, []);
@@ -60,7 +37,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
         "Content-Type": "application/json",
       },
     };
-    fetch("https://podcast-recommend.herokuapp.com/podcasts", myRequest)
+    fetch("http://localhost:3000/podcasts", myRequest)
       .then((response) => response.json())
       .then((newJSON) => {
         // console.log("This is the returned", newJSON);
@@ -86,6 +63,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
     });
 
     //functions
+    //Checking to see if podcast is found in JSON database to display liked heart or not
 
     console.log("This was found", whatFoundEpisode);
     if (whatFoundPodcast !== undefined && whatFoundPodcast !== false) {
@@ -101,7 +79,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
         const subtractedArray = pleaseBeID[podcastObj.name].filter((epi) => {
           return epi !== episode.id;
         });
-        fetch(`https://podcast-recommend.herokuapp.com/podcasts/${pleaseBeID.id}`, {
+        fetch(`http://localhost:3000/podcasts/${pleaseBeID.id}`, {
           method: "PUT",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -124,7 +102,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
           foundNewEpisode[podcastObj.name]
         );
 
-        fetch(`https://podcast-recommend.herokuapp.com/podcasts/${pleaseBeID.id}`, {
+        fetch(`http://localhost:3000/podcasts/${pleaseBeID.id}`, {
           method: "PATCH",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -151,7 +129,6 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
 
   function dbAdd(e) {
     const podcastID = podcastObj.name;
-   
 
     setToggleHeart(true);
 
@@ -161,7 +138,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
     const packagedObj = {
       [podcastID]: [...fullDataArray, episode.id],
     };
-    fetch("https://podcast-recommend.herokuapp.com/podcasts/", {
+    fetch("http://localhost:3000/podcasts", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
@@ -171,7 +148,6 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
-        
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -197,6 +173,7 @@ function EpisodeCard({ episode, podcastObj, dbJSON }) {
         {Math.round(episode.duration_ms / 1000 / 60)} min{" "}
       </div>
       <div>
+        {/* This is the other option for video display that will do first 30 seconds preview but removes all the errors associated with the long loading of the full embed */}
         {/* <video controls width="200" className="episode_playback">
           <source src={episode.audio_preview_url} type="audio/mp3"></source>
         </video> */}
